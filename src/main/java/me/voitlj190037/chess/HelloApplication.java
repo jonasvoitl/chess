@@ -15,6 +15,7 @@ public class HelloApplication extends Application {
         stage.setTitle("TEST!");
         stage.setScene(scene);
         stage.show();
+        //UI login prompt implemented
     }
 
     public static void main(String[] args) {
