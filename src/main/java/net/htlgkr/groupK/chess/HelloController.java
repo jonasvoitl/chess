@@ -1,4 +1,4 @@
-package me.voitlj190037.chess;
+package net.htlgkr.groupK.chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
