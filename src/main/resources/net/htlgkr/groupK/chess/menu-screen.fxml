@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.htlgkr.groupK.chess.UI_LoginPrompt_Controller">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -25,14 +26,14 @@
                </font>
             </Text>
             <Text layoutX="22.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielername:" textAlignment="CENTER" />
-            <TextField id="idPlayerName" layoutX="125.0" layoutY="81.0" />
+            <TextField fx:id="idUserName" layoutX="125.0" layoutY="81.0" />
             <Text layoutX="27.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP-Adresse:" textAlignment="CENTER" />
-            <TextField id="id_IP_address" layoutX="125.0" layoutY="136.0" />
+            <TextField fx:id="idIPAddress" layoutX="125.0" layoutY="136.0" />
             <Text layoutX="22.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portnummer:" textAlignment="CENTER" />
-            <TextField id="idPortnumber" layoutX="125.0" layoutY="186.0" />
+            <TextField fx:id="idPortNumber" layoutX="125.0" layoutY="186.0" />
             <Text layoutX="22.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwort eingeben:" textAlignment="CENTER" wrappingWidth="69.29296875" />
-            <TextField id="idUserPassword" layoutX="125.0" layoutY="238.0" />
-            <Button id="idJoinGameButton" layoutX="109.0" layoutY="313.0" mnemonicParsing="false" text="Spiel joinen" />
+            <Button fx:id="idJoinGameButton" layoutX="109.0" layoutY="313.0" mnemonicParsing="false" text="Spiel joinen" />
+            <PasswordField fx:id="idUserPassword" layoutX="126.0" layoutY="239.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>
