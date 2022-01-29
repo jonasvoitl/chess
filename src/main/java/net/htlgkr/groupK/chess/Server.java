@@ -7,20 +7,10 @@ import java.net.*;
 import java.util.Scanner;
 
 public class Server {
-    private int port;
+    private UI_LoginPrompt_Controller ui_loginPrompt_cnt;
 
-    public Server(int port) {
-        this.port = port;
-    }
-
-    public static void main(String[] args) throws UnknownHostException {
-        System.out.println("[Server] enter port");
-        Scanner s = new Scanner(System.in);
-        int port = Integer.parseInt(s.nextLine());
-
-        Server server = new Server(port);
-        System.out.println("[Server] server started");
-        server.startListening();
+    public Server(UI_LoginPrompt_Controller ui_loginPrompt_cnt) {
+        this.ui_loginPrompt_cnt = ui_loginPrompt_cnt;
     }
 
     public void startListening() {
@@ -28,16 +18,12 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    ServerSocket serverSocket = new ServerSocket(port);
+                    ServerSocket serverSocket = new ServerSocket(4802);
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("[Server] client connected");
 
-                    Scanner s = new Scanner(new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
-                    if(s.hasNextLine()) {
-                        System.out.println("[Server] message from client: " + s.nextLine());
-                    }
+                    System.out.println("[Server] client password: " + ui_loginPrompt_cnt.getIdUserPassword().getText());
 
-                    s.close();
                     clientSocket.close();
                     System.out.println("[Server] server closed");
                     serverSocket.close();

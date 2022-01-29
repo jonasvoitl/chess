@@ -7,21 +7,15 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
+    private UI_LoginPrompt_Controller ui_loginPrompt_cnt;
     private InetSocketAddress address;
 
-    public Client(String hostname, int port) {
-        address = new InetSocketAddress(hostname, port);
+    public Client(UI_LoginPrompt_Controller ui_loginPrompt_cnt) {
+        this.ui_loginPrompt_cnt = ui_loginPrompt_cnt;
+        address = new InetSocketAddress(ui_loginPrompt_cnt.getIdIPAddress().getText(),
+                Integer.parseInt(ui_loginPrompt_cnt.getIdPortNumber().getText()));
     }
 
-    public static void main(String[] args) {
-        System.out.println("[Client] enter ip address");
-        Scanner s = new Scanner(System.in);
-        String ipAddress = s.nextLine();
-        System.out.println("[Client] enter port");
-        int port = Integer.parseInt(s.nextLine());
-        Client client = new Client(ipAddress, port);
-        client.startClient();
-    }
 
     public void startClient() {
         try {
@@ -29,15 +23,6 @@ public class Client {
             socket.connect(address);
             System.out.println("[Client] client connected");
 
-            System.out.println("[Client] enter message");
-            Scanner s = new Scanner(System.in);
-            String msg = s.nextLine();
-
-            PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-            pw.println(msg);
-            pw.flush();
-
-            pw.close();
             System.out.println("[Client] client closed");
             socket.close();
         } catch (Exception e) {
