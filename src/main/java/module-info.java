@@ -12,6 +12,4 @@ module me.voitlj190037.chess {
 
     opens net.htlgkr.groupK.chess to javafx.fxml;
     exports net.htlgkr.groupK.chess;
-    exports net.htlgkr.groupK.chess.Figures;
-    opens net.htlgkr.groupK.chess.Figures to javafx.fxml;
 }
