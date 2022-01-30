@@ -13,32 +13,50 @@ public class Main extends Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        createMenuScreen(stage);
+        createLoginPrompt(stage);
     }
 
     public static void main(String[] args) {
         launch();
     }
 
-    public static void createMenuScreen(Stage stageMenuScreen) throws IOException
-    {
-        FXMLLoader menuScreen = new FXMLLoader(Main.class.getResource("menu-screen.fxml"));
-        Scene sceneMenuScreen = new Scene(menuScreen.load(), 600, 400);
-        stageMenuScreen.setScene(sceneMenuScreen);
-        stageMenuScreen.show();
+    public static void createLoginPrompt(Stage stage) throws IOException {
+        FXMLLoader loginPrompt = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/login-prompt.fxml"));
+        Scene sceneLoginPrompt = new Scene(loginPrompt.load(), 600, 400);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Login");
+        stage.setScene(sceneLoginPrompt);
+        stage.show();
     }
 
-    public static void createChessGame(Stage stageChessGame) throws IOException
-    {
+    public static void createChessGame(Stage stage) throws IOException {
         FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("chess-game.fxml"));
         Scene sceneChessGame = new Scene(chessGame.load(), 500, 700);
-        stageChessGame.setScene(sceneChessGame);
+        stage.setScene(sceneChessGame);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Schach");
+        stage.show();
+    }
 
-        stageChessGame.setResizable(false);
-        Image icon = new Image(Main.class.getResource("/images/chess_icon.jpg").toString());
-        stageChessGame.getIcons().add(icon);
-        stageChessGame.setTitle("Chess Game");
+    public static void createLoadingScreenServer(Stage stage) throws IOException {
+        FXMLLoader loadingScreenServer = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/loading-screen-server.fxml"));
+        Scene sceneLoadingScreenServer = new Scene(loadingScreenServer.load(), 600, 400);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Warten auf Gegner");
+        stage.setScene(sceneLoadingScreenServer);
+        stage.show();
+    }
 
-        stageChessGame.show();
+    public static void createLoadingScreenClient(Stage stage) throws IOException {
+        FXMLLoader loadingScreenClient = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/loading-screen-client.fxml"));
+        Scene sceneLoadingScreenClient = new Scene(loadingScreenClient.load(), 600, 400);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Warten auf Gegner");
+        stage.setScene(sceneLoadingScreenClient);
+        stage.show();
     }
 }

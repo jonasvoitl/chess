@@ -10,6 +10,5 @@ module me.voitlj190037.chess {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens net.htlgkr.groupK.chess to javafx.fxml;
     exports net.htlgkr.groupK.chess;
 }

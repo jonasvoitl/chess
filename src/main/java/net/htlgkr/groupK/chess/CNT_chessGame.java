@@ -3,7 +3,7 @@ package net.htlgkr.groupK.chess;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ChessGameController
+public class CNT_chessGame
 {
     @FXML
     private Label idPlayerNameBlue;
