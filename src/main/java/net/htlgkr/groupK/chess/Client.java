@@ -109,7 +109,7 @@ public class Client {
         }else {
             address = new InetSocketAddress(ipAddress, portNumber);
             try {
-                Main.createLoadingScreenClient((Stage) CNT_loginPrompt.getLoginPrompt_splitpane().getScene().getWindow());
+                Main.createLoadingScreenClient(Main.stage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -128,13 +128,13 @@ public class Client {
             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
 
             //Anfrage an Server mit Passwort senden
-            pw.write(CLIENTABBREVIATION+password);
+            pw.println(CLIENTABBREVIATION+password);
 
             if(br.readLine().equals(SERVERABBREVIATION+"password incorrect")) {
                 //TODO Ausgabe an User, dass Passwort falsch ist, implementieren
                 socket.close();
             }else {
-                Main.createChessGame((Stage) CNT_loginPrompt.getLoginPrompt_splitpane().getScene().getWindow());
+                Main.createChessGame(Main.stage);
             }
         } catch (Exception e) {
             e.printStackTrace();

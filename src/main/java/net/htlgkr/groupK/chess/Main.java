@@ -8,11 +8,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application
-{
+public class Main extends Application {
+    public static Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException
     {
+        this.stage = stage;
         createLoginPrompt(stage);
     }
 
@@ -31,7 +33,7 @@ public class Main extends Application
     }
 
     public static void createChessGame(Stage stage) throws IOException {
-        FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("chess-game.fxml"));
+        FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/chess-game.fxml"));
         Scene sceneChessGame = new Scene(chessGame.load(), 500, 700);
         stage.setScene(sceneChessGame);
         stage.setResizable(false);

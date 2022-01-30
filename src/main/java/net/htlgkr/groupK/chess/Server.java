@@ -61,7 +61,7 @@ public class Server {
             CNT_loginPrompt.getText_createGame_incorrectData().setVisible(true);
         }else {
             try {
-                Main.createLoadingScreenServer((Stage) CNT_loginPrompt.getLoginPrompt_splitpane().getScene().getWindow());
+                Main.createLoadingScreenServer(Main.stage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,7 +84,7 @@ public class Server {
                     System.out.println("[Server] checking password");
                     if(br.readLine().equals(CLIENTABBREVIATION+password)) {
                         System.out.println("[Server] password correct");
-                        Main.createChessGame((Stage) CNT_loginPrompt.getLoginPrompt_splitpane().getScene().getWindow());
+                        Main.createChessGame(Main.stage);
                         System.out.println("[Server] chess game started");
                     }else {
                         System.out.println("[Server] password incorrect");

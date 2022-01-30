@@ -6,8 +6,8 @@ import javafx.scene.control.Label;
 public class CNT_chessGame
 {
     @FXML
-    private Label idPlayerNameBlue;
+    public Label idPlayerNameBlue;
 
     @FXML
-    private Label idPlayerNameOrange;
+    public Label idPlayerNameOrange;
 }
