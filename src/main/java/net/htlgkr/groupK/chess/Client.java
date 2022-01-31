@@ -134,9 +134,17 @@ public class Client {
                 //TODO Ausgabe an User, dass Passwort falsch ist, implementieren
                 socket.close();
             }else {
-                Main.createChessGame(Main.stage);
+                createChessGame();
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createChessGame() {
+        try {
+            Main.createChessGame(Main.stage);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

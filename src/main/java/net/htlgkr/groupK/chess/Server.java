@@ -84,7 +84,7 @@ public class Server {
                     System.out.println("[Server] checking password");
                     if(br.readLine().equals(CLIENTABBREVIATION+password)) {
                         System.out.println("[Server] password correct");
-                        Main.createChessGame(Main.stage);
+                        createChessGame();
                         System.out.println("[Server] chess game started");
                     }else {
                         System.out.println("[Server] password incorrect");
@@ -96,5 +96,13 @@ public class Server {
                 }
             }
         }).start();
+    }
+
+    public void createChessGame() {
+        try {
+            Main.createChessGame(Main.stage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

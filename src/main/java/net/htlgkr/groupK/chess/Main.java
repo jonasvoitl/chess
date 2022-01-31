@@ -35,10 +35,10 @@ public class Main extends Application {
     public static void createChessGame(Stage stage) throws IOException {
         FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/chess-game.fxml"));
         Scene sceneChessGame = new Scene(chessGame.load(), 500, 700);
-        stage.setScene(sceneChessGame);
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Schach");
+        stage.setScene(sceneChessGame);
         stage.show();
     }
 
