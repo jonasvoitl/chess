@@ -1,4 +1,4 @@
-package net.htlgkr.groupK.chess;
+package net.htlgkr.groupK.chess.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,11 +8,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import net.htlgkr.groupK.chess.Data;
+import net.htlgkr.groupK.chess.Main;
+import net.htlgkr.groupK.chess.sockets.Client;
+import net.htlgkr.groupK.chess.sockets.Server;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CNT_loginPrompt implements Initializable {
+public class LoginPromptController implements Initializable {
 
     @FXML
     public SplitPane loginPrompt_splitpane;
@@ -153,12 +157,12 @@ public class CNT_loginPrompt implements Initializable {
 
         this.getBtn_createGame_sendRequest().setOnAction(actionEvent -> {
             System.out.println("new server created");
-            Server server = new Server(this);
+            Main.data.setServer(new Server(this));
         });
 
         this.getBtn_joinGame_sendRequest().setOnAction(actionEvent -> {
             System.out.println("new client created");
-            Client client = new Client(this);
+            Main.data.setClient(new Client(this));
         });
     }
 }

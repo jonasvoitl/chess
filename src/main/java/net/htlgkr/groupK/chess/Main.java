@@ -5,16 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import net.htlgkr.groupK.chess.controller.LoginPromptController;
 
 import java.io.IOException;
 
 public class Main extends Application {
     public static Stage stage;
+    public static Data data;
 
     @Override
     public void start(Stage stage) throws IOException
     {
-        this.stage = stage;
+        Main.stage = stage;
+        Main.data = new Data();
         createLoginPrompt(stage);
     }
 
@@ -22,9 +25,14 @@ public class Main extends Application {
         launch();
     }
 
-    public static void createLoginPrompt(Stage stage) throws IOException {
+    public static void createLoginPrompt(Stage stage) {
         FXMLLoader loginPrompt = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/login-prompt.fxml"));
-        Scene sceneLoginPrompt = new Scene(loginPrompt.load(), 600, 400);
+        Scene sceneLoginPrompt = null;
+        try {
+            sceneLoginPrompt = new Scene(loginPrompt.load(), 600, 400);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Login");
@@ -32,9 +40,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void createChessGame(Stage stage) throws IOException {
+    public static void createChessGame(Stage stage) {
         FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/chess-game.fxml"));
-        Scene sceneChessGame = new Scene(chessGame.load(), 500, 700);
+        Scene sceneChessGame = null;
+        try {
+            sceneChessGame = new Scene(chessGame.load(), 500, 700);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Schach");
@@ -42,9 +55,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void createLoadingScreenServer(Stage stage) throws IOException {
+    public static void createLoadingScreenServer(Stage stage) {
         FXMLLoader loadingScreenServer = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/loading-screen-server.fxml"));
-        Scene sceneLoadingScreenServer = new Scene(loadingScreenServer.load(), 600, 400);
+        Scene sceneLoadingScreenServer = null;
+        try {
+            sceneLoadingScreenServer = new Scene(loadingScreenServer.load(), 600, 400);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Warten auf Gegner");
@@ -52,9 +70,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void createLoadingScreenClient(Stage stage) throws IOException {
+    public static void createLoadingScreenClient(Stage stage) {
         FXMLLoader loadingScreenClient = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/loading-screen-client.fxml"));
-        Scene sceneLoadingScreenClient = new Scene(loadingScreenClient.load(), 600, 400);
+        Scene sceneLoadingScreenClient = null;
+        try {
+            sceneLoadingScreenClient = new Scene(loadingScreenClient.load(), 600, 400);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Warten auf Gegner");
@@ -62,13 +85,33 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void createPasswordIncorrectScreenClient(Stage stage) throws IOException {
+    public static void createPasswordIncorrectScreenClient(Stage stage) {
         FXMLLoader passwordIncorrectScreenClient = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/password-incorrect-screen-client.fxml"));
-        Scene scenePasswordIncorrectScreenClient = new Scene(passwordIncorrectScreenClient.load(), 600, 400);
+        Scene scenePasswordIncorrectScreenClient = null;
+        try {
+            scenePasswordIncorrectScreenClient = new Scene(passwordIncorrectScreenClient.load(), 600, 400);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         stage.setResizable(false);
         stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
         stage.setTitle("Passwort falsch");
         stage.setScene(scenePasswordIncorrectScreenClient);
+        stage.show();
+    }
+
+    public static void createConnectionFailedClient(Stage stage) {
+        FXMLLoader connectionFailedClient = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/connection-failed-client.fxml"));
+        Scene sceneConnectionFailedClient = null;
+        try {
+            sceneConnectionFailedClient = new Scene(connectionFailedClient.load(), 600, 400);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Passwort falsch");
+        stage.setScene(sceneConnectionFailedClient);
         stage.show();
     }
 }

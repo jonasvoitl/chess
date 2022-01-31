@@ -1,6 +1,8 @@
-package net.htlgkr.groupK.chess;
+package net.htlgkr.groupK.chess.sockets;
 
 import javafx.application.Platform;
+import net.htlgkr.groupK.chess.Main;
+import net.htlgkr.groupK.chess.controller.LoginPromptController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,16 +11,15 @@ import java.io.PrintWriter;
 import java.net.*;
 
 public class Server {
-    private CNT_loginPrompt CNT_loginPrompt;
+    private LoginPromptController CNT_loginPrompt;
     private final String CLIENT_ABBREVIATION = "[C]";
     private final String SERVER_ABBREVIATION = "[S]";
 
-    //TODO (?) sinnvoll mit public static?
-    public static String userName;
-    public static int portNumber;
-    public static String password;
+    private String userName;
+    private int portNumber;
+    private String password;
 
-    public Server(CNT_loginPrompt CNT_loginPrompt) {
+    public Server(LoginPromptController CNT_loginPrompt) {
         this.CNT_loginPrompt = CNT_loginPrompt;
         getData();
     }
@@ -66,11 +67,9 @@ public class Server {
             CNT_loginPrompt.getText_createGame_ph_incorrectData().setText(incorrectDataStr.toString());
             CNT_loginPrompt.getText_createGame_ph_incorrectData().setVisible(true);
         }else {
-            try {
+            Platform.runLater(() -> {
                 Main.createLoadingScreenServer(Main.stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            });
             startListening();
         }
     }
@@ -93,11 +92,7 @@ public class Server {
                             System.out.println("[Server] password correct");
                             pw.println(SERVER_ABBREVIATION +"password correct");
                             Platform.runLater(() -> {
-                                try {
-                                    Main.createChessGame(Main.stage);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.createChessGame(Main.stage);
                             });
                             System.out.println("[Server] chess game started");
 
@@ -114,5 +109,16 @@ public class Server {
                 }
                 }
         }).start();
+    }
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getPortNumber() {
+        return portNumber;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

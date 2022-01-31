@@ -11,4 +11,6 @@ module me.voitlj190037.chess {
     requires eu.hansolo.tilesfx;
 
     exports net.htlgkr.groupK.chess;
+    exports net.htlgkr.groupK.chess.controller;
+    exports net.htlgkr.groupK.chess.sockets;
 }

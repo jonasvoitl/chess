@@ -1,26 +1,29 @@
-package net.htlgkr.groupK.chess;
+package net.htlgkr.groupK.chess.sockets;
 
 import javafx.application.Platform;
+import net.htlgkr.groupK.chess.Main;
+import net.htlgkr.groupK.chess.controller.LoginPromptController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.Socket;
 
 public class Client {
-    private CNT_loginPrompt CNT_loginPrompt;
+    private LoginPromptController CNT_loginPrompt;
     private InetSocketAddress address;
     private final String CLIENT_ABBREVIATION = "[C]";
     private final String SERVER_ABBREVIATION = "[S]";
 
-    public static String userName;
-    public static String ipAddress;
-    public static int portNumber;
-    public static String password;
+    private String userName;
+    private String ipAddress;
+    private int portNumber;
+    private String password;
 
-    public Client(CNT_loginPrompt CNT_loginPrompt) {
+    public Client(LoginPromptController CNT_loginPrompt) {
         this.CNT_loginPrompt = CNT_loginPrompt;
         getData();
     }
@@ -108,41 +111,43 @@ public class Client {
             CNT_loginPrompt.getText_joinGame_ph_incorrectData().setVisible(true);
         }else {
             address = new InetSocketAddress(ipAddress, portNumber);
-            try {
-                Main.createLoadingScreenClient(Main.stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Main.createLoadingScreenClient(Main.stage);
             startClient();
         }
     }
 
     public void startClient() {
-        try {
-            Socket socket = new Socket();
-            socket.connect(address);
-            System.out.println("[Client] client connected");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket();
+                    socket.connect(address, 5000);
+                    System.out.println("[Client] client connected");
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
 
-            //Anfrage an Server mit Passwort senden
-            pw.println(CLIENT_ABBREVIATION +password);
+                    //Anfrage an Server mit Passwort senden
+                    pw.println(CLIENT_ABBREVIATION +password);
 
-            if(br.readLine().equals(SERVER_ABBREVIATION +"password incorrect")) {
-                Main.createPasswordIncorrectScreenClient(Main.stage);
-            }else {
-                Platform.runLater(() -> {
-                    try {
-                        Main.createChessGame(Main.stage);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(br.readLine().equals(SERVER_ABBREVIATION +"password incorrect")) {
+                        Platform.runLater(() -> {
+                            Main.createPasswordIncorrectScreenClient(Main.stage);
+                        });
+                    }else {
+                        Platform.runLater(() -> {
+                            Main.createChessGame(Main.stage);
+                        });
                     }
-                });
+                } catch (Exception e) {
+                    Platform.runLater(() -> {
+                        Main.createConnectionFailedClient(Main.stage);
+                    });
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }).start();
     }
 
     public String getUserName() {
