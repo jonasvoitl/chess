@@ -1,5 +1,6 @@
 package net.htlgkr.groupK.chess;
 
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -84,7 +85,13 @@ public class Server {
                     System.out.println("[Server] checking password");
                     if(br.readLine().equals(CLIENTABBREVIATION+password)) {
                         System.out.println("[Server] password correct");
-                        createChessGame();
+                        Platform.runLater(() -> {
+                            try {
+                                Main.createChessGame(Main.stage);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                         System.out.println("[Server] chess game started");
                     }else {
                         System.out.println("[Server] password incorrect");
@@ -96,13 +103,5 @@ public class Server {
                 }
             }
         }).start();
-    }
-
-    public void createChessGame() {
-        try {
-            Main.createChessGame(Main.stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
