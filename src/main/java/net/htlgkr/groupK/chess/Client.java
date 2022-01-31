@@ -1,7 +1,6 @@
 package net.htlgkr.groupK.chess;
 
 import javafx.application.Platform;
-import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,13 +12,13 @@ import java.net.Socket;
 public class Client {
     private CNT_loginPrompt CNT_loginPrompt;
     private InetSocketAddress address;
-    private final String CLIENTABBREVIATION = "[C]";
-    private final String SERVERABBREVIATION = "[S]";
+    private final String CLIENT_ABBREVIATION = "[C]";
+    private final String SERVER_ABBREVIATION = "[S]";
 
-    private String userName;
-    private String ipAddress;
-    private int portNumber;
-    private String password;
+    public static String userName;
+    public static String ipAddress;
+    public static int portNumber;
+    public static String password;
 
     public Client(CNT_loginPrompt CNT_loginPrompt) {
         this.CNT_loginPrompt = CNT_loginPrompt;
@@ -105,8 +104,8 @@ public class Client {
         //Überprüfung ob inkorrekte Daten vorliegen
         if(!incorrectDataStr.toString().equals("")) {
             incorrectDataStr.append(" inkorrekt.");
-            CNT_loginPrompt.getText_joinGame_incorrectData().setText(incorrectDataStr.toString());
-            CNT_loginPrompt.getText_joinGame_incorrectData().setVisible(true);
+            CNT_loginPrompt.getText_joinGame_ph_incorrectData().setText(incorrectDataStr.toString());
+            CNT_loginPrompt.getText_joinGame_ph_incorrectData().setVisible(true);
         }else {
             address = new InetSocketAddress(ipAddress, portNumber);
             try {
@@ -118,7 +117,6 @@ public class Client {
         }
     }
 
-
     public void startClient() {
         try {
             Socket socket = new Socket();
@@ -129,11 +127,10 @@ public class Client {
             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
 
             //Anfrage an Server mit Passwort senden
-            pw.println(CLIENTABBREVIATION+password);
+            pw.println(CLIENT_ABBREVIATION +password);
 
-            if(br.readLine().equals(SERVERABBREVIATION+"password incorrect")) {
-                //TODO Ausgabe an User, dass Passwort falsch ist, implementieren
-                socket.close();
+            if(br.readLine().equals(SERVER_ABBREVIATION +"password incorrect")) {
+                Main.createPasswordIncorrectScreenClient(Main.stage);
             }else {
                 Platform.runLater(() -> {
                     try {
@@ -146,5 +143,21 @@ public class Client {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public int getPortNumber() {
+        return portNumber;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

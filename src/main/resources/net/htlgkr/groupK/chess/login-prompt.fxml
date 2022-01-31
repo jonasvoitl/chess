@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.htlgkr.groupK.chess.CNT_loginPrompt">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.htlgkr.groupK.chess.CNT_loginPrompt">
    <children>
       <SplitPane fx:id="loginPrompt_splitpane" dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="300.0">
                      <children>
-                        <Text fx:id="text_createGame_incorrectData" fill="#bc0000" strokeType="OUTSIDE" strokeWidth="0.0" text="createGame_incorrect_data_placeholder" visible="false">
+                        <Text fx:id="text_createGame_ph_incorrectData" fill="#bc0000" strokeType="OUTSIDE" strokeWidth="0.0" text="createGame_ph_incorrect_data" visible="false">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -46,7 +46,7 @@
                <children>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="-0.0">
                      <children>
-                        <Text fx:id="text_joinGame_incorrectData" fill="#bc0000" strokeType="OUTSIDE" strokeWidth="0.0" text="joinGame_incorrect_data_placeholder" visible="false">
+                        <Text fx:id="text_joinGame_ph_incorrectData" fill="#bc0000" strokeType="OUTSIDE" strokeWidth="0.0" text="joinGame_ph_incorrect_data" visible="false">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

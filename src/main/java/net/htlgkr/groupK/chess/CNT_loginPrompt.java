@@ -8,9 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,7 +18,7 @@ public class CNT_loginPrompt implements Initializable {
     public SplitPane loginPrompt_splitpane;
 
     @FXML
-    public Text text_createGame_incorrectData;
+    public Text text_createGame_ph_incorrectData;
 
     @FXML
     public Text text_createGame_userName;
@@ -44,7 +42,7 @@ public class CNT_loginPrompt implements Initializable {
     public Button btn_createGame_sendRequest;
 
     @FXML
-    public Text text_joinGame_incorrectData;
+    public Text text_joinGame_ph_incorrectData;
 
     @FXML
     public Text text_joinGame_userName;
@@ -77,8 +75,8 @@ public class CNT_loginPrompt implements Initializable {
         return loginPrompt_splitpane;
     }
 
-    public Text getText_createGame_incorrectData() {
-        return text_createGame_incorrectData;
+    public Text getText_createGame_ph_incorrectData() {
+        return text_createGame_ph_incorrectData;
     }
 
     public Text getText_createGame_userName() {
@@ -109,8 +107,8 @@ public class CNT_loginPrompt implements Initializable {
         return btn_createGame_sendRequest;
     }
 
-    public Text getText_joinGame_incorrectData() {
-        return text_joinGame_incorrectData;
+    public Text getText_joinGame_ph_incorrectData() {
+        return text_joinGame_ph_incorrectData;
     }
 
     public Text getText_joinGame_userName() {

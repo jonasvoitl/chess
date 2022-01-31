@@ -61,4 +61,14 @@ public class Main extends Application {
         stage.setScene(sceneLoadingScreenClient);
         stage.show();
     }
+
+    public static void createPasswordIncorrectScreenClient(Stage stage) throws IOException {
+        FXMLLoader passwordIncorrectScreenClient = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/password-incorrect-screen-client.fxml"));
+        Scene scenePasswordIncorrectScreenClient = new Scene(passwordIncorrectScreenClient.load(), 600, 400);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(Main.class.getResource("/images/icon.png").toString()));
+        stage.setTitle("Passwort falsch");
+        stage.setScene(scenePasswordIncorrectScreenClient);
+        stage.show();
+    }
 }
