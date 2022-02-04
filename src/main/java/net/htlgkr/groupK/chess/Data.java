@@ -3,23 +3,28 @@ package net.htlgkr.groupK.chess;
 import net.htlgkr.groupK.chess.sockets.Client;
 import net.htlgkr.groupK.chess.sockets.Server;
 
-public class Data {
-    private Server server;
-    private Client client;
+import java.io.Serializable;
 
-    public Server getServer() {
-        return server;
+public class Data implements Serializable {
+    private String userName;
+    private String password;
+
+    public Data() {
     }
 
-    public void setServer(Server server) {
-        this.server = server;
+    public String getUserName() {
+        return userName;
     }
 
-    public Client getClient() {
-        return client;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

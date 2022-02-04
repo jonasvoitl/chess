@@ -1,15 +1,12 @@
 package net.htlgkr.groupK.chess.sockets;
 
 import javafx.application.Platform;
+import net.htlgkr.groupK.chess.Data;
 import net.htlgkr.groupK.chess.Main;
 import net.htlgkr.groupK.chess.controller.LoginPromptController;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.Socket;
 
 public class Client {
@@ -17,6 +14,10 @@ public class Client {
     private InetSocketAddress address;
     private final String CLIENT_ABBREVIATION = "[C]";
     private final String SERVER_ABBREVIATION = "[S]";
+    private BufferedReader br;
+    private PrintWriter pw;
+    private ObjectOutputStream oos;
+    private ObjectInputStream ois;
 
     private String userName;
     private String ipAddress;
@@ -111,6 +112,11 @@ public class Client {
             CNT_loginPrompt.getText_joinGame_ph_incorrectData().setVisible(true);
         }else {
             address = new InetSocketAddress(ipAddress, portNumber);
+
+            Main.dataFromClient = new Data();
+            Main.dataFromClient.setUserName(userName);
+            Main.dataFromClient.setPassword(password);
+
             Main.createLoadingScreenClient(Main.stage);
             startClient();
         }
@@ -125,8 +131,10 @@ public class Client {
                     socket.connect(address, 5000);
                     System.out.println("[Client] client connected");
 
-                    BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+                    br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    pw = new PrintWriter(socket.getOutputStream(), true);
+                    oos = new ObjectOutputStream(socket.getOutputStream());
+                    ois = new ObjectInputStream(socket.getInputStream());
 
                     //Anfrage an Server mit Passwort senden
                     pw.println(CLIENT_ABBREVIATION +password);
@@ -136,6 +144,12 @@ public class Client {
                             Main.createPasswordIncorrectScreenClient(Main.stage);
                         });
                     }else {
+                        //Client sendet seine Data Klasse an Server
+                        oos.writeObject(Main.dataFromClient);
+
+                        //Client liest Data Klasse von Server ein und speichert sie
+                        Main.dataFromServer = (Data) ois.readObject();
+
                         Platform.runLater(() -> {
                             Main.createChessGame(Main.stage);
                         });
@@ -164,5 +178,9 @@ public class Client {
 
     public String getPassword() {
         return password;
+    }
+
+    private void sendClientInstanceToServer() {
+
     }
 }

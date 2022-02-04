@@ -157,12 +157,12 @@ public class LoginPromptController implements Initializable {
 
         this.getBtn_createGame_sendRequest().setOnAction(actionEvent -> {
             System.out.println("new server created");
-            Main.data.setServer(new Server(this));
+            Main.server = new Server(this);
         });
 
         this.getBtn_joinGame_sendRequest().setOnAction(actionEvent -> {
             System.out.println("new client created");
-            Main.data.setClient(new Client(this));
+            Main.client = new Client(this);
         });
     }
 }

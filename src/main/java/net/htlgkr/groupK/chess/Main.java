@@ -5,19 +5,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import net.htlgkr.groupK.chess.controller.LoginPromptController;
+import net.htlgkr.groupK.chess.sockets.Client;
+import net.htlgkr.groupK.chess.sockets.Server;
 
 import java.io.IOException;
 
 public class Main extends Application {
     public static Stage stage;
-    public static Data data;
+    public static Data dataFromServer;
+    public static Data dataFromClient;
+
+    public static Server server;
+    public static Client client;
 
     @Override
     public void start(Stage stage) throws IOException
     {
         Main.stage = stage;
-        Main.data = new Data();
         createLoginPrompt(stage);
     }
 
