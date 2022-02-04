@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.htlgkr.groupK.chess.controller.ChessGameController">
+<AnchorPane prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.htlgkr.groupK.chess.controller.ChessGameController">
    <children>
       <VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" spacing="40.0">
          <children>
@@ -21,284 +15,92 @@
             </Label>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0">
                <children>
-                  <GridPane prefHeight="400.0" prefWidth="400.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <GridPane fx:id="GP_backgroundChessBoard" onMouseClicked="#onMouseClicked" prefHeight="400.0" prefWidth="400.0">
+                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/rook_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/knight_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/bishop_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/queen_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/king_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/bishop_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/knight_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/rook_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../../../../images/figures/orange/pawn_orange.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/pawn_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/rook_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/knight_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/bishop_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/queen_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/king_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/bishop_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/knight_blue.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="50.0" layoutY="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                           <image>
-                              <Image url="@../../../../images/figures/blue/rook_blue.png" />
-                           </image>
-                        </ImageView>
+                        <Label fx:id="l1" layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: black;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+                        <Label layoutX="50.0" layoutY="50.0" onMouseClicked="#onMouseClicked" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                </children>
