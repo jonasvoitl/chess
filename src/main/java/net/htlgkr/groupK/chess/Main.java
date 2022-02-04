@@ -48,7 +48,7 @@ public class Main extends Application {
         FXMLLoader chessGame = new FXMLLoader(Main.class.getResource("/net/htlgkr/groupK/chess/chess-game.fxml"));
         Scene sceneChessGame = null;
         try {
-            sceneChessGame = new Scene(chessGame.load(), 500, 700);
+            sceneChessGame = new Scene(chessGame.load());
         } catch (IOException e) {
             e.printStackTrace();
         }

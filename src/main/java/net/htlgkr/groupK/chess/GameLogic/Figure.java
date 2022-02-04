@@ -1,5 +1,6 @@
 package net.htlgkr.groupK.chess.GameLogic;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -15,6 +16,7 @@ public abstract class Figure
         this.tile = tile;
         this.figureImage = figureImage;
         tile.setGraphic(figureImage);
+        tile.setAlignment(Pos.CENTER);
     }
 
     public boolean isBlue()
