@@ -1,53 +1,31 @@
 package net.htlgkr.groupK.chess.gamelogic;
 
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-
 public abstract class Figure
 {
     private boolean isBlue;
-    private Label tile;
-    private ImageView figureImage;
+    private String imagePath;
 
-    public Figure(boolean isBlue, Label tile, ImageView figureImage)
+    public Figure(boolean isBlue, String imagePath)
     {
         this.isBlue = isBlue;
-        this.tile = tile;
-        this.figureImage = figureImage;
-        tile.setGraphic(figureImage);
-        tile.setAlignment(Pos.CENTER);
+        this.imagePath = imagePath;
     }
 
-    public boolean isBlue()
-    {
+    public boolean isBlue() {
         return isBlue;
     }
 
-    public void setBlue(boolean blue)
-    {
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setBlue(boolean blue) {
         isBlue = blue;
     }
 
-    public Label getTile()
-    {
-        return tile;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
-    public void setTile(Label tile)
-    {
-        this.tile = tile;
-    }
-
-    public ImageView getFigureImage()
-    {
-        return figureImage;
-    }
-
-    public void setFigureImage(ImageView figureImage)
-    {
-        this.figureImage = figureImage;
-    }
-
-    public abstract boolean move(Label l);
+    public abstract boolean checkRequestedMove();
 }

@@ -1,18 +1,16 @@
 package net.htlgkr.groupK.chess.gamelogic.figures;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import net.htlgkr.groupK.chess.gamelogic.Figure;
 
 public class King extends Figure
 {
-    public King(boolean isBlue, Label tile, ImageView figureImage)
+    public King(boolean isBlue, String imagePath)
     {
-        super(isBlue, tile, figureImage);
+        super(isBlue, imagePath);
     }
 
     @Override
-    public boolean move(Label l)
+    public boolean checkRequestedMove()
     {
         return false;
     }
