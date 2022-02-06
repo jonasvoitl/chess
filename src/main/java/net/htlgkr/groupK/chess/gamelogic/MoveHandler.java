@@ -11,7 +11,7 @@ public class MoveHandler
         this.chessGameController = chessGameController;
     }
 
-    private void move(Index indexSelectedTile, Index indexNextPositionTile, Figure figure)
+    private void move(Index fromIndex, Index toIndex, Figure figure)
     {
 
     }

@@ -4,11 +4,12 @@ public abstract class Figure
 {
     private boolean isBlue;
     private String imagePath;
+    private FigureType figureType;
 
-    public Figure(boolean isBlue, String imagePath)
-    {
+    public Figure(boolean isBlue, String imagePath, FigureType figureType) {
         this.isBlue = isBlue;
         this.imagePath = imagePath;
+        this.figureType = figureType;
     }
 
     public boolean isBlue() {
@@ -19,13 +20,9 @@ public abstract class Figure
         return imagePath;
     }
 
-    public void setBlue(boolean blue) {
-        isBlue = blue;
+    public FigureType getFigureType() {
+        return figureType;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public abstract boolean checkRequestedMove();
+    public abstract boolean checkRequestedMove(Index toIndex, Index fromIndex);
 }
