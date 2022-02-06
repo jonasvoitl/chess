@@ -40,6 +40,5 @@ public class MoveHandler
         }else {
             System.out.println("bad move");
         }
-
     }
 }
