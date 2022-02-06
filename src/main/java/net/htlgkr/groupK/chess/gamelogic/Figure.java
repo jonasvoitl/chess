@@ -1,4 +1,4 @@
-package net.htlgkr.groupK.chess.GameLogic;
+package net.htlgkr.groupK.chess.gamelogic;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

@@ -10,7 +10,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Client {
-    private LoginPromptController CNT_loginPrompt;
+    private LoginPromptController loginPromptController;
     private InetSocketAddress address;
     private final String CLIENT_ABBREVIATION = "[C]";
     private final String SERVER_ABBREVIATION = "[S]";
@@ -24,8 +24,8 @@ public class Client {
     private int portNumber;
     private String password;
 
-    public Client(LoginPromptController CNT_loginPrompt) {
-        this.CNT_loginPrompt = CNT_loginPrompt;
+    public Client(LoginPromptController loginPromptController) {
+        this.loginPromptController = loginPromptController;
         getData();
     }
 
@@ -33,25 +33,25 @@ public class Client {
         StringBuilder incorrectDataStr = new StringBuilder();
 
         //Überprüfung user name
-        if(CNT_loginPrompt.getTextField_joinGame_userName().getText().equals("")) {
+        if(loginPromptController.getTextField_joinGame_userName().getText().equals("")) {
             incorrectDataStr.append("User name");
         }else {
-            userName = CNT_loginPrompt.getTextField_joinGame_userName().getText();
+            userName = loginPromptController.getTextField_joinGame_userName().getText();
         }
 
         //Überprüfung ip address
-        if(CNT_loginPrompt.getTextField_joinGame_ipAddress().getText().equals("")) {
+        if(loginPromptController.getTextField_joinGame_ipAddress().getText().equals("")) {
                 if(incorrectDataStr.toString().equals("")) {
                     incorrectDataStr.append("IP-Adresse");
                 }else {
                     incorrectDataStr.append(", IP-Adresse");
                 }
         }else {
-            if(CNT_loginPrompt.getTextField_joinGame_ipAddress().getText().equals("localhost")) {
-                ipAddress = CNT_loginPrompt.getTextField_joinGame_ipAddress().getText();
+            if(loginPromptController.getTextField_joinGame_ipAddress().getText().equals("localhost")) {
+                ipAddress = loginPromptController.getTextField_joinGame_ipAddress().getText();
             }else {
                 try {
-                    String[] parts = CNT_loginPrompt.getTextField_joinGame_ipAddress().getText().split("\\.");
+                    String[] parts = loginPromptController.getTextField_joinGame_ipAddress().getText().split("\\.");
                     if (parts.length==4) {
                         for(int i=0; i<parts.length; i++) {
                             if(Integer.parseInt(parts[i])>=0&&Integer.parseInt(parts[i])<=255) {
@@ -64,7 +64,7 @@ public class Client {
                                 }
                                 break;
                             }
-                            ipAddress = CNT_loginPrompt.getTextField_joinGame_ipAddress().getText();
+                            ipAddress = loginPromptController.getTextField_joinGame_ipAddress().getText();
                         }
                     }else {
                         if(incorrectDataStr.toString().equals("")) {
@@ -85,7 +85,7 @@ public class Client {
 
         //Überprüfung port number
         try{
-            portNumber = Integer.parseInt(CNT_loginPrompt.getTextField_joinGame_portNumber().getText());
+            portNumber = Integer.parseInt(loginPromptController.getTextField_joinGame_portNumber().getText());
         }catch (Exception ex) {
             if(incorrectDataStr.toString().equals("")) {
                 incorrectDataStr.append("Portnummer");
@@ -95,27 +95,25 @@ public class Client {
         }
 
         //Überprüfung password
-        if(CNT_loginPrompt.getTextField_joinGame_password().getText().equals("")) {
+        if(loginPromptController.getTextField_joinGame_password().getText().equals("")) {
             if(incorrectDataStr.toString().equals("")) {
                 incorrectDataStr.append("Passwort");
             }else {
                 incorrectDataStr.append(", Passwort");
             }
         }else {
-            password = CNT_loginPrompt.getTextField_joinGame_password().getText();
+            password = loginPromptController.getTextField_joinGame_password().getText();
         }
 
         //Überprüfung ob inkorrekte Daten vorliegen
         if(!incorrectDataStr.toString().equals("")) {
             incorrectDataStr.append(" inkorrekt.");
-            CNT_loginPrompt.getText_joinGame_ph_incorrectData().setText(incorrectDataStr.toString());
-            CNT_loginPrompt.getText_joinGame_ph_incorrectData().setVisible(true);
+            loginPromptController.getText_joinGame_ph_incorrectData().setText(incorrectDataStr.toString());
+            loginPromptController.getText_joinGame_ph_incorrectData().setVisible(true);
         }else {
             address = new InetSocketAddress(ipAddress, portNumber);
 
-            Main.dataFromClient = new Data();
-            Main.dataFromClient.setUserName(userName);
-            Main.dataFromClient.setPassword(password);
+            Main.dataFromClient = new Data(userName, password, ipAddress, portNumber);
 
             Main.createLoadingScreenClient(Main.stage);
             startClient();
@@ -128,28 +126,26 @@ public class Client {
             public void run() {
                 try {
                     Socket socket = new Socket();
-                    socket.connect(address, 5000);
-                    System.out.println("[Client] client connected");
+                    socket.connect(address, 5000);  //TODO timeout wenn Client versucht 2 mal auf Server zu connecten
+                    System.out.println(CLIENT_ABBREVIATION + "client connected");
 
                     br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     pw = new PrintWriter(socket.getOutputStream(), true);
                     oos = new ObjectOutputStream(socket.getOutputStream());
                     ois = new ObjectInputStream(socket.getInputStream());
 
-                    //Anfrage an Server mit Passwort senden
-                    pw.println(CLIENT_ABBREVIATION +password);
+                    //Client sendet seine Data Klasse an Server
+                    oos.writeObject(Main.dataFromClient);
+                    oos.flush();
+
+                    //Client liest Data Klasse von Server ein und speichert sie
+                    Main.dataFromServer = (Data) ois.readObject();
 
                     if(br.readLine().equals(SERVER_ABBREVIATION +"password incorrect")) {
                         Platform.runLater(() -> {
                             Main.createPasswordIncorrectScreenClient(Main.stage);
                         });
                     }else {
-                        //Client sendet seine Data Klasse an Server
-                        oos.writeObject(Main.dataFromClient);
-
-                        //Client liest Data Klasse von Server ein und speichert sie
-                        Main.dataFromServer = (Data) ois.readObject();
-
                         Platform.runLater(() -> {
                             Main.createChessGame(Main.stage);
                         });

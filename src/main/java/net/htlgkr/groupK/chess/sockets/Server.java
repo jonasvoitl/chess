@@ -1,6 +1,7 @@
 package net.htlgkr.groupK.chess.sockets;
 
 import javafx.application.Platform;
+import net.htlgkr.groupK.chess.CommandReader;
 import net.htlgkr.groupK.chess.Data;
 import net.htlgkr.groupK.chess.Main;
 import net.htlgkr.groupK.chess.controller.LoginPromptController;
@@ -9,20 +10,23 @@ import java.io.*;
 import java.net.*;
 
 public class Server {
-    private LoginPromptController CNT_loginPrompt;
+    private LoginPromptController loginPromptController;
     private final String CLIENT_ABBREVIATION = "[C]";
     private final String SERVER_ABBREVIATION = "[S]";
     private BufferedReader br;
     private PrintWriter pw;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
+    private ServerSocket serverSocket;
+    private Thread commandReaderThread;
+    private boolean clientConnected = false;
 
     private String userName;
-    private int portNumber;
     private String password;
+    private int portNumber;
 
-    public Server(LoginPromptController CNT_loginPrompt) {
-        this.CNT_loginPrompt = CNT_loginPrompt;
+    public Server(LoginPromptController loginPromptController) {
+        this.loginPromptController = loginPromptController;
         getData();
     }
 
@@ -30,15 +34,15 @@ public class Server {
         StringBuilder incorrectDataStr = new StringBuilder();
 
         //Überprüfung user name
-        if(CNT_loginPrompt.getTextField_createGame_userName().getText().equals("")) {
+        if(loginPromptController.getTextField_createGame_userName().getText().equals("")) {
             incorrectDataStr.append("User name");
         }else {
-            userName = CNT_loginPrompt.getTextField_createGame_userName().getText();
+            userName = loginPromptController.getTextField_createGame_userName().getText();
         }
 
         //Überprüfung port number
         try{
-            portNumber = Integer.parseInt(CNT_loginPrompt.getTextField_createGame_portNumber().getText());
+            portNumber = Integer.parseInt(loginPromptController.getTextField_createGame_portNumber().getText());
             if(portNumber >= 1 && portNumber <= 65535) {
 
             }else {
@@ -53,79 +57,86 @@ public class Server {
         }
 
         //Überprüfung password
-        if(CNT_loginPrompt.getTextField_createGame_password().getText().equals("")) {
+        if(loginPromptController.getTextField_createGame_password().getText().equals("")) {
             if(incorrectDataStr.toString().equals("")) {
                 incorrectDataStr.append("Passwort");
             }else {
                 incorrectDataStr.append(", Passwort");
             }
         }else {
-            password = CNT_loginPrompt.getTextField_createGame_password().getText();
+            password = loginPromptController.getTextField_createGame_password().getText();
         }
 
         //Überprüfung ob inkorrekte Daten vorliegen
         if(!incorrectDataStr.toString().equals("")) {
             incorrectDataStr.append(" inkorrekt.");
-            CNT_loginPrompt.getText_createGame_ph_incorrectData().setText(incorrectDataStr.toString());
-            CNT_loginPrompt.getText_createGame_ph_incorrectData().setVisible(true);
+            loginPromptController.getText_createGame_ph_incorrectData().setText(incorrectDataStr.toString());
+            loginPromptController.getText_createGame_ph_incorrectData().setVisible(true);
         }else {
-            Main.dataFromServer = new Data();
-            Main.dataFromServer.setUserName(userName);
-            Main.dataFromServer.setPassword(password);
+                Main.dataFromServer = new Data();
+                Main.dataFromServer.setUserName(userName);
+                Main.dataFromServer.setPassword(password);
+                Main.dataFromServer.setPortNumber(portNumber);
 
-            Platform.runLater(() -> {
-                Main.createLoadingScreenServer(Main.stage);
-            });
-            startListening();
+                Platform.runLater(() -> {
+                    Main.createLoadingScreenServer(Main.stage);
+                });
+                startListening();
         }
     }
 
     public void startListening() {
+        System.out.println(SERVER_ABBREVIATION + "start listening");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
                     try {
-                        ServerSocket serverSocket = new ServerSocket(portNumber);
+                        if(serverSocket!=null) {
+                            serverSocket.close();
+                        }
+                        serverSocket = new ServerSocket(portNumber);
+                        System.out.println(SERVER_ABBREVIATION + "new serverSocket created");
+
                         Socket clientSocket = serverSocket.accept();
-                        System.out.println("[Server] client connected");
+                        System.out.println(SERVER_ABBREVIATION + "client connected");
 
                         br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                         pw = new PrintWriter(clientSocket.getOutputStream(), true);
                         oos = new ObjectOutputStream(clientSocket.getOutputStream());
                         ois = new ObjectInputStream(clientSocket.getInputStream());
 
-                        System.out.println("[Server] checking password");
-                        String passwordFromClient = br.readLine();
-                        if(passwordFromClient!=null && passwordFromClient.equals(CLIENT_ABBREVIATION +password)) {
-                            System.out.println("[Server] password correct");
+                        //Server sendet seine Data Klasse an Client
+                        oos.writeObject(Main.dataFromServer);
+                        oos.flush();
+
+                        //Server liest Data Klasse von Client ein und speichert sie
+                        Main.dataFromClient = (Data) ois.readObject();
+
+                        System.out.println(SERVER_ABBREVIATION + "checking password");
+                        if(Main.dataFromClient.getPassword().equals(password)) {
+                            System.out.println(SERVER_ABBREVIATION + "password correct");
                             pw.println(SERVER_ABBREVIATION +"password correct");
-                            password = null;    //wird null damit sich später keine neuen Clients mit dem Server verbinden können
 
-                            //Server sendet seine Data Klasse an Client
-                            oos.writeObject(Main.dataFromServer);
-
-                            //Server liest Data Klasse von Client ein und speichert sie
-                            Main.dataFromClient = (Data) ois.readObject();
+                            commandReaderThread = new Thread(new CommandReader(clientSocket));
+                            commandReaderThread.start();
 
                             Platform.runLater(() -> {
                                 Main.createChessGame(Main.stage);
                             });
-                            System.out.println("[Server] chess game started");
-
-                            //TODO Server soll mit Client künftig nur noch über Methoden kommunizieren sodass er wieder listen kann (wegen Clients die sich neu connecten könnten)
-                            //blockiert
-                            //br.readLine();
+                            System.out.println(SERVER_ABBREVIATION + "chess game started");
+                            clientConnected = true;
                         }else {
-                            System.out.println("[Server] password incorrect");
+                            System.out.println(SERVER_ABBREVIATION + "password incorrect");
                             pw.println(SERVER_ABBREVIATION +"password incorrect");
                             clientSocket.close();
                         }
+                        System.out.println(SERVER_ABBREVIATION + "reached end of code");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-                }
+            }
         }).start();
     }
     public String getUserName() {

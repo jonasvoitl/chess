@@ -17,7 +17,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder">
+            <Text fx:id="text_ph_socketAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>

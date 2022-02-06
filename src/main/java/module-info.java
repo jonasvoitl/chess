@@ -9,6 +9,7 @@ module me.voitlj190037.chess {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires javafx.media;
 
     exports net.htlgkr.groupK.chess;
     exports net.htlgkr.groupK.chess.controller;

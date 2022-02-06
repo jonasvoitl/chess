@@ -1,12 +1,12 @@
-package net.htlgkr.groupK.chess.GameLogic.Figures;
+package net.htlgkr.groupK.chess.gamelogic.figures;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import net.htlgkr.groupK.chess.GameLogic.Figure;
+import net.htlgkr.groupK.chess.gamelogic.Figure;
 
-public class Rook extends Figure
+public class King extends Figure
 {
-    public Rook(boolean isBlue, Label tile, ImageView figureImage)
+    public King(boolean isBlue, Label tile, ImageView figureImage)
     {
         super(isBlue, tile, figureImage);
     }
