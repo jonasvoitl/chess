@@ -118,4 +118,6 @@ public class Main extends Application {
         stage.setScene(sceneConnectionFailedClient);
         stage.show();
     }
+
+    //TODO Auswahl entfernen Button bei chess game einfügen damit man andere Figur auswählen kann
 }
