@@ -18,8 +18,8 @@ public class Server {
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
     private ServerSocket serverSocket;
-    private Thread commandReaderThread;
-    private boolean clientConnected = false;
+    private Socket clientSocket;
+    private boolean isConnected = false;
 
     private String userName;
     private String password;
@@ -83,7 +83,14 @@ public class Server {
                 Platform.runLater(() -> {
                     Main.createLoadingScreenServer(Main.stage);
                 });
-                startListening();
+
+            try {
+                serverSocket = new ServerSocket(portNumber);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(SERVER_ABBREVIATION + "new serverSocket created");
+            startListening();
         }
     }
 
@@ -94,13 +101,11 @@ public class Server {
             public void run() {
                 while(true) {
                     try {
-                        if(serverSocket!=null) {
-                            serverSocket.close();
+                        clientSocket = serverSocket.accept();
+                        if(isConnected) {
+                            clientSocket.close();
+                            continue;
                         }
-                        serverSocket = new ServerSocket(portNumber);
-                        System.out.println(SERVER_ABBREVIATION + "new serverSocket created");
-
-                        Socket clientSocket = serverSocket.accept();
                         System.out.println(SERVER_ABBREVIATION + "client connected");
 
                         br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -120,14 +125,13 @@ public class Server {
                             System.out.println(SERVER_ABBREVIATION + "password correct");
                             pw.println(SERVER_ABBREVIATION +"password correct");
 
-                            commandReaderThread = new Thread(new CommandReader(clientSocket));
-                            commandReaderThread.start();
+                            new Thread(new CommandReader(clientSocket)).start();
 
                             Platform.runLater(() -> {
                                 Main.createChessGame(Main.stage);
                             });
                             System.out.println(SERVER_ABBREVIATION + "chess game started");
-                            clientConnected = true;
+                            isConnected = true;
                         }else {
                             System.out.println(SERVER_ABBREVIATION + "password incorrect");
                             pw.println(SERVER_ABBREVIATION +"password incorrect");
