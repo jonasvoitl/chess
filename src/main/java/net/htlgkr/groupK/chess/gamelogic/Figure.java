@@ -27,5 +27,5 @@ public abstract class Figure
         this.imagePath = imagePath;
     }
 
-    public abstract boolean checkRequestedMove();
+    public abstract boolean checkRequestedMove(Index fromIndex, Index toIndex);
 }

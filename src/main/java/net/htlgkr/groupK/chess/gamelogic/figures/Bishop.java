@@ -1,6 +1,7 @@
 package net.htlgkr.groupK.chess.gamelogic.figures;
 
 import net.htlgkr.groupK.chess.gamelogic.Figure;
+import net.htlgkr.groupK.chess.gamelogic.Index;
 
 public class Bishop extends Figure
 {
@@ -10,8 +11,7 @@ public class Bishop extends Figure
     }
 
     @Override
-    public boolean checkRequestedMove()
-    {
-        return false;
+    public boolean checkRequestedMove(Index fromIndex, Index toIndex) {
+        return true;
     }
 }
