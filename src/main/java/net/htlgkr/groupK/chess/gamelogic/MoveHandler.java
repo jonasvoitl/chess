@@ -21,6 +21,7 @@ public class MoveHandler
 
     public void move(Index fromIndex, Index toIndex, Figure figure)
     {
+        
         //wenn der User die Figur auf das Feld setzen will wo sie sowieso schon steht ist der Move ungültig
         if(!fromIndex.equals(toIndex)) {
             if(figure.checkRequestedMove(fromIndex, toIndex)) {

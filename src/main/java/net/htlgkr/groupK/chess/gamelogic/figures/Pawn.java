@@ -1,15 +1,14 @@
 package net.htlgkr.groupK.chess.gamelogic.figures;
 
 import net.htlgkr.groupK.chess.gamelogic.Figure;
-import net.htlgkr.groupK.chess.gamelogic.FigureType;
 import net.htlgkr.groupK.chess.gamelogic.Index;
 
 public class Pawn extends Figure
 {
     private boolean isFirstPawnMove = true;
 
-    public Pawn(boolean isBlue, String imagePath, FigureType figureType) {
-        super(isBlue, imagePath, figureType);
+    public Pawn(boolean isBlue, String imagePath) {
+        super(isBlue, imagePath);;
     }
 
     public void setFirstPawnMove(boolean firstPawnMove) {
