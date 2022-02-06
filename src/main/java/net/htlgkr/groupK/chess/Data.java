@@ -8,8 +8,21 @@ import java.io.Serializable;
 public class Data implements Serializable {
     private String userName;
     private String password;
+    private String ipAddress;
+    private int portNumber;
 
     public Data() {
+    }
+
+    public Data(String userName, String password, String ipAddress, int portNumber) {
+        this.userName = userName;
+        this.password = password;
+        this.ipAddress = ipAddress;
+        this.portNumber = portNumber;
+    }
+
+    public void setPortNumber(int portNumber) {
+        this.portNumber = portNumber;
     }
 
     public String getUserName() {
@@ -26,5 +39,17 @@ public class Data implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public int getPortNumber() {
+        return portNumber;
     }
 }
