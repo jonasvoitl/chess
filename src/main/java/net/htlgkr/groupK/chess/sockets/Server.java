@@ -78,6 +78,8 @@ public class Server {
                 Main.dataFromServer.setPassword(password);
                 Main.dataFromServer.setPortNumber(portNumber);
 
+                Main.isServer = true;
+
                 Platform.runLater(() -> {
                     Main.createLoadingScreenServer(Main.stage);
                 });

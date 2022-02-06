@@ -21,10 +21,6 @@ public class Data implements Serializable {
         this.portNumber = portNumber;
     }
 
-    public void setPortNumber(int portNumber) {
-        this.portNumber = portNumber;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -51,5 +47,9 @@ public class Data implements Serializable {
 
     public int getPortNumber() {
         return portNumber;
+    }
+
+    public void setPortNumber(int portNumber) {
+        this.portNumber = portNumber;
     }
 }
