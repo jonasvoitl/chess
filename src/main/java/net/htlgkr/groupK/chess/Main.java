@@ -14,6 +14,7 @@ public class Main extends Application {
     public static Stage stage;
     public static Data dataFromServer;
     public static Data dataFromClient;
+    public static boolean isServer;
 
     public static Server server;
     public static Client client;
@@ -120,4 +121,5 @@ public class Main extends Application {
     }
 
     //TODO Auswahl entfernen Button bei chess game einfügen damit man andere Figur auswählen kann
+    //TODO IDs einfügen (A1 - H8)
 }

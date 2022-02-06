@@ -114,6 +114,7 @@ public class Client {
             address = new InetSocketAddress(ipAddress, portNumber);
 
             Main.dataFromClient = new Data(userName, password, ipAddress, portNumber);
+            Main.isServer = false;
 
             Main.createLoadingScreenClient(Main.stage);
             startClient();

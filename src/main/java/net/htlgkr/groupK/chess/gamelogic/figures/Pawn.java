@@ -1,6 +1,7 @@
 package net.htlgkr.groupK.chess.gamelogic.figures;
 
 import net.htlgkr.groupK.chess.gamelogic.Figure;
+import net.htlgkr.groupK.chess.gamelogic.Index;
 
 public class Pawn extends Figure
 {
@@ -10,8 +11,7 @@ public class Pawn extends Figure
     }
 
     @Override
-    public boolean checkRequestedMove()
-    {
-        return false;
+    public boolean checkRequestedMove(Index fromIndex, Index toIndex) {
+        return true;
     }
 }
