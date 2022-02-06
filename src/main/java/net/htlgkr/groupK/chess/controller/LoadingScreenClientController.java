@@ -7,6 +7,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import net.htlgkr.groupK.chess.Main;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,9 +16,18 @@ public class LoadingScreenClientController implements Initializable {
     @FXML
     public Text text_ph_socketAddress;
 
+    @FXML
+    public MediaView mediaView_loadingAnimation;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         text_ph_socketAddress.setText(Main.dataFromClient.getIpAddress());
+
+        Media media = new Media(new File("./loading_animation.mp4").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaView_loadingAnimation.setMediaPlayer(mediaPlayer);
+        mediaPlayer.setCycleCount(-1);
+        mediaPlayer.play();
     }
 }
 
