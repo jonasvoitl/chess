@@ -14,4 +14,6 @@ module me.voitlj190037.chess {
     exports net.htlgkr.groupK.chess;
     exports net.htlgkr.groupK.chess.controller;
     exports net.htlgkr.groupK.chess.sockets;
+    exports net.htlgkr.groupK.chess.gamelogic;
+    exports net.htlgkr.groupK.chess.gamelogic.figures;
 }

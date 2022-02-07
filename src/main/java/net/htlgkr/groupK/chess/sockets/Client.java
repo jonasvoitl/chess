@@ -1,6 +1,7 @@
 package net.htlgkr.groupK.chess.sockets;
 
 import javafx.application.Platform;
+import net.htlgkr.groupK.chess.CommandReader;
 import net.htlgkr.groupK.chess.Data;
 import net.htlgkr.groupK.chess.Main;
 import net.htlgkr.groupK.chess.controller.LoginPromptController;
@@ -18,6 +19,8 @@ public class Client {
     private PrintWriter pw;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
+    private Socket socket;
+    private CommandReader commandReader;
 
     private String userName;
     private String ipAddress;
@@ -47,7 +50,7 @@ public class Client {
                     incorrectDataStr.append(", IP-Adresse");
                 }
         }else {
-            if(loginPromptController.getTextField_joinGame_ipAddress().getText().equals("localhost")) {
+            if(loginPromptController.getTextField_joinGame_ipAddress().getText().equalsIgnoreCase("localhost")) {
                 ipAddress = loginPromptController.getTextField_joinGame_ipAddress().getText();
             }else {
                 try {
@@ -126,8 +129,8 @@ public class Client {
             @Override
             public void run() {
                 try {
-                    Socket socket = new Socket();
-                    socket.connect(address, 5000);  //TODO timeout wenn Client versucht 2 mal auf Server zu connecten
+                    socket = new Socket();
+                    socket.connect(address, 5000);
                     System.out.println(CLIENT_ABBREVIATION + "client connected");
 
                     br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -149,6 +152,7 @@ public class Client {
                     }else {
                         Platform.runLater(() -> {
                             Main.createChessGame(Main.stage);
+                            System.out.println(CLIENT_ABBREVIATION + "chess game created");
                         });
                     }
                 } catch (Exception e) {
@@ -157,6 +161,8 @@ public class Client {
                     });
                     e.printStackTrace();
                 }
+                new Thread(commandReader = new CommandReader(socket)).start();
+                System.out.println(CLIENT_ABBREVIATION + "reaches end of code");
             }
         }).start();
     }
@@ -177,7 +183,19 @@ public class Client {
         return password;
     }
 
-    private void sendClientInstanceToServer() {
+    public Socket getSocket() {
+        return socket;
+    }
 
+    public ObjectOutputStream getOos() {
+        return oos;
+    }
+
+    public PrintWriter getPw() {
+        return pw;
+    }
+
+    public ObjectInputStream getOis() {
+        return ois;
     }
 }

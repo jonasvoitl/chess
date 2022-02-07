@@ -10,10 +10,10 @@ public class King extends Figure
     }
 
     @Override
-    public boolean checkRequestedMove(Index toIndex, Index fromIndex)
+    public boolean checkRequestedMove(Index fromIndex, Index toIndex)
     {
-        int moveOnXAxis = Math.abs(toIndex.getX() - fromIndex.getX());
-        int moveOnYAxis = Math.abs(toIndex.getY() - fromIndex.getY());
+        int moveOnXAxis = Math.abs(toIndex.getY() - fromIndex.getY());
+        int moveOnYAxis = Math.abs(toIndex.getX() - fromIndex.getX());
 
         if(moveOnXAxis == 1 && moveOnYAxis == 0 ||
                 moveOnXAxis == 0 && moveOnYAxis == 1 ||

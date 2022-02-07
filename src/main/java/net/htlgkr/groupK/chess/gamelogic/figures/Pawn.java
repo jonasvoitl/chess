@@ -1,5 +1,6 @@
 package net.htlgkr.groupK.chess.gamelogic.figures;
 
+import net.htlgkr.groupK.chess.Main;
 import net.htlgkr.groupK.chess.gamelogic.Figure;
 import net.htlgkr.groupK.chess.gamelogic.Index;
 
@@ -16,35 +17,49 @@ public class Pawn extends Figure
     }
 
     @Override
-    public boolean checkRequestedMove(Index toIndex, Index fromIndex)
+    public boolean checkRequestedMove(Index fromIndex, Index toIndex)
     {
-        //TODO Schräg bewegen
-        int moveOnXAxis = toIndex.getX() - fromIndex.getX();
-        int moveOnYAxis = toIndex.getY() - fromIndex.getY();
+        //für moveOnXAxis müssen Y Werte verwendet werden, dies ist auf die Nummierung des 2D-Arrays zurückzuführen
+        int moveOnXAxis = toIndex.getY() - fromIndex.getY();
+        int moveOnYAxis = toIndex.getX() - fromIndex.getX();
 
         if(isBlue())
         {
-            if(moveOnYAxis == -1 && moveOnXAxis == 0)
+            //wenn Feld vor Bauer in y-Richtung frei ist
+            if(moveOnXAxis == 0 && moveOnYAxis == -1 && Main.chessGameController.getTilesMap().get(toIndex) == null)
             {
-                isFirstPawnMove = false;
                 return true;
             }
-            else if (isFirstPawnMove && moveOnYAxis == -2 && moveOnXAxis == 0)
+            //wenn 2 Felder vor Bauer in y-Richtung frei sind und er den ersten Zug macht
+            else if (isFirstPawnMove && moveOnXAxis == 0 && moveOnYAxis == -2 && Main.chessGameController.getTilesMap().get(toIndex) == null &&
+                    Main.chessGameController.getTilesMap().get(new Index(toIndex.getX()+1, toIndex.getY())) == null)
             {
-                isFirstPawnMove = false;
+                return true;
+            //Überprüfung ob Bauer jemanden schmeißen kann: schräg oben links oder schräg oben rechts muss eine gegnerische Figur stehen
+            }else if(moveOnXAxis == -1 && moveOnYAxis == -1 && Main.chessGameController.getTilesMap().get(toIndex) != null &&
+                    !Main.chessGameController.getTilesMap().get(toIndex).isBlue() ||
+                    moveOnXAxis == 1 && moveOnYAxis == -1 && Main.chessGameController.getTilesMap().get(toIndex) != null &&
+                    !Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
                 return true;
             }
         }
         else
         {
-            if(moveOnYAxis == 1 && moveOnXAxis == 0)
+            //wenn Feld vor Bauer in y-Richtung frei ist
+            if(moveOnXAxis == 0 && moveOnYAxis == 1 && Main.chessGameController.getTilesMap().get(toIndex) == null)
             {
-                isFirstPawnMove = false;
                 return true;
             }
-            else if (isFirstPawnMove && moveOnYAxis == 2 && moveOnXAxis == 0)
+            //wenn 2 Felder vor Bauer in y-Richtung frei sind und er den ersten Zug macht
+            else if (isFirstPawnMove && moveOnXAxis == 0 && moveOnYAxis == 2 && Main.chessGameController.getTilesMap().get(toIndex) == null &&
+                    Main.chessGameController.getTilesMap().get(new Index(toIndex.getX()-1, toIndex.getY())) == null)
             {
-                isFirstPawnMove = false;
+                return true;
+            //Überprüfung ob Bauer jemanden schmeißen kann: schräg unten links oder schräg unten rechts muss eine gegnerische Figur stehen
+            }else if(moveOnXAxis == -1 && moveOnYAxis == 1 && Main.chessGameController.getTilesMap().get(toIndex) != null &&
+                    Main.chessGameController.getTilesMap().get(toIndex).isBlue() ||
+                    moveOnXAxis == 1 && moveOnYAxis == 1 && Main.chessGameController.getTilesMap().get(toIndex) != null &&
+                    Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
                 return true;
             }
         }

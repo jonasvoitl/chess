@@ -10,13 +10,13 @@ public class Queen extends Figure
     }
 
     @Override
-    public boolean checkRequestedMove(Index toIndex, Index fromIndex)
+    public boolean checkRequestedMove(Index fromIndex, Index toIndex)
     {
         int moveOnXAxis = Math.abs(toIndex.getX() - fromIndex.getX());
         int moveOnYAxis = Math.abs(toIndex.getY() - fromIndex.getY());
 
-        if(moveOnXAxis < 8 && moveOnXAxis > 0 ||
-                moveOnYAxis < 0 && moveOnYAxis > 8 )
+        if(moveOnXAxis > 0 && moveOnXAxis < 8 && moveOnYAxis == 0 ||
+        moveOnYAxis < 8 && moveOnYAxis > 0 && moveOnXAxis == 0 || moveOnXAxis == moveOnYAxis)
         {
             return true;
         }

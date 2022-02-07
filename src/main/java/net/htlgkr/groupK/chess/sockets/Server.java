@@ -19,6 +19,7 @@ public class Server {
     private ObjectInputStream ois;
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    private CommandReader commandReader;
     private boolean isConnected = false;
 
     private String userName;
@@ -125,7 +126,7 @@ public class Server {
                             System.out.println(SERVER_ABBREVIATION + "password correct");
                             pw.println(SERVER_ABBREVIATION +"password correct");
 
-                            new Thread(new CommandReader(clientSocket)).start();
+                            new Thread(commandReader = new CommandReader(clientSocket)).start();
 
                             Platform.runLater(() -> {
                                 Main.createChessGame(Main.stage);
@@ -155,5 +156,21 @@ public class Server {
 
     public String getPassword() {
         return password;
+    }
+
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
+
+    public ObjectOutputStream getOos() {
+        return oos;
+    }
+
+    public PrintWriter getPw() {
+        return pw;
+    }
+
+    public ObjectInputStream getOis() {
+        return ois;
     }
 }

@@ -3,25 +3,28 @@ package net.htlgkr.groupK.chess.gamelogic;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import net.htlgkr.groupK.chess.CommandWriter;
 import net.htlgkr.groupK.chess.Main;
 import net.htlgkr.groupK.chess.controller.ChessGameController;
 
+import java.net.Socket;
 import java.util.*;
 
 public class MoveHandler
 {
     private ChessGameController chessGameController;
+    private CommandWriter commandWriter;
     private Map<Index, Figure> tilesMap = new HashMap<>();
     private Label[][] tiles;
 
-    public MoveHandler(ChessGameController chessGameController)
+    public MoveHandler()
     {
-        this.chessGameController = chessGameController;
+        chessGameController = Main.chessGameController;
+        commandWriter = new CommandWriter();
     }
 
-    public void move(Index fromIndex, Index toIndex, Figure figure)
+    public boolean move(Index fromIndex, Index toIndex, Figure figure)
     {
-
         //wenn der User die Figur auf das Feld setzen will wo sie sowieso schon steht ist der Move ungültig
         if(!fromIndex.equals(toIndex)) {
             if(figure.checkRequestedMove(fromIndex, toIndex)) {
@@ -35,11 +38,19 @@ public class MoveHandler
                 tilesMap = chessGameController.getTilesMap();
                 tilesMap.put(toIndex, tilesMap.get(fromIndex));
                 tilesMap.put(fromIndex, null);
+
+                System.out.println("move successful");
+                return true;
             }else {
                 System.out.println("bad move");
             }
         }else {
             System.out.println("bad move");
         }
+        return false;
+    }
+
+    public CommandWriter getCommandWriter() {
+        return commandWriter;
     }
 }

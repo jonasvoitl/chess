@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import net.htlgkr.groupK.chess.gamelogic.Figure;
+import net.htlgkr.groupK.chess.gamelogic.Frame;
 import net.htlgkr.groupK.chess.gamelogic.MoveHandler;
 import net.htlgkr.groupK.chess.gamelogic.figures.*;
 import net.htlgkr.groupK.chess.gamelogic.Index;
@@ -28,7 +29,6 @@ public class ChessGameController implements Initializable
     private Index toIndex = null;
 
     private EventHandler<MouseEvent> onMouseClickEvent;
-    private MoveHandler moveHandler = new MoveHandler(this);
 
     @FXML
     public GridPane GP_backgroundChessBoard;
@@ -42,6 +42,8 @@ public class ChessGameController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        Platform.runLater(() -> Main.moveHandler = new MoveHandler());
+
         createTiles();
         setStartingPositions();
         createOnMouseClickedEvent();
@@ -248,7 +250,21 @@ public class ChessGameController implements Initializable
                     toIndex = new Index(GridPane.getRowIndex((Node) mouseEvent.getTarget()), GridPane.getColumnIndex((Node) mouseEvent.getTarget()));
 
                     Figure selectedFigure = tilesMap.get(fromIndex);
-                    moveHandler.move(fromIndex, toIndex, selectedFigure);
+                    Figure figureOnToIndex = tilesMap.get(toIndex);
+
+                    boolean moveValid = Main.moveHandler.move(fromIndex, toIndex, selectedFigure);
+                    Main.moveHandler.getCommandWriter().sendFrame(new Frame(selectedFigure, fromIndex, toIndex));
+                    if(moveValid && selectedFigure instanceof Pawn pawn) {
+                        pawn.setFirstPawnMove(false);
+                    }
+
+                    if(moveValid && figureOnToIndex instanceof King) {
+                        if(Main.isServer) {
+                            Main.createWinningScreenServer(Main.stage);
+                        }else {
+                            Main.createWinningScreenClient(Main.stage);
+                        }
+                    }
 
                     //Zuweisung der urspünglichen Farbe des Tiles nachdem der Move abgeschlossen ist
                     if(fromIndex.getX()%2==0 && fromIndex.getY()%2==0) {
