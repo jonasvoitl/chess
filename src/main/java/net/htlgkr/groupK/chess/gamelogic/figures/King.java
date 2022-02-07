@@ -23,14 +23,23 @@ public class King extends Figure
             moveValid = true;
         }
 
-        if (moveValid && Main.isServer && Main.chessGameController.getTilesMap().get(toIndex) != null &&
-                Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
-            moveValid = false;
-        }else if(moveValid && !Main.isServer && Main.chessGameController.getTilesMap().get(toIndex) != null &&
-                !Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
-            moveValid = false;
+        if(isBlue() && moveValid) {
+            if(Main.chessGameController.getTilesMap().get(toIndex) != null) {
+                if(!Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
+                    moveValid = true;
+                }else {
+                    moveValid = false;
+                }
+            }
+        }else {
+            if(Main.chessGameController.getTilesMap().get(toIndex) != null) {
+                if(Main.chessGameController.getTilesMap().get(toIndex).isBlue()) {
+                    moveValid = true;
+                }else {
+                    moveValid = false;
+                }
+            }
         }
-
         return moveValid;
     }
 }
