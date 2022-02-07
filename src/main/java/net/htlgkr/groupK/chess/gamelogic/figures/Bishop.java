@@ -22,19 +22,9 @@ public class Bishop extends Figure
 
         boolean moveValid = moveOnXAxisAbs == moveOnYAxisAbs;
 
-        if(moveOnXAxis > 0 && moveOnYAxis > 0) {
-            for (int i = 1; i != moveOnXAxis && i != moveOnYAxis; i++) {
-                if(Main.chessGameController.getTilesMap().get(new Index(fromIndex.getX()+i, fromIndex.getY()+i)) != null)  {
-                    moveValid = false;
-                }
-            }
-        }else {
-            for (int i = 1; i != moveOnXAxis && i != moveOnYAxis; i--) {
-                if(Main.chessGameController.getTilesMap().get(new Index(fromIndex.getX()-i, fromIndex.getY()-i)) != null)  {
-                    moveValid = false;
-                }
-            }
+        if(moveOnXAxisAbs == moveOnYAxisAbs) {
+            return true;
         }
-        return moveValid;
+        return false;
     }
 }

@@ -89,6 +89,11 @@ public class Client {
         //Überprüfung port number
         try{
             portNumber = Integer.parseInt(loginPromptController.getTextField_joinGame_portNumber().getText());
+            if(portNumber >= 1 && portNumber <= 65535) {
+
+            }else {
+                throw new IllegalArgumentException();
+            }
         }catch (Exception ex) {
             if(incorrectDataStr.toString().equals("")) {
                 incorrectDataStr.append("Portnummer");
@@ -162,7 +167,7 @@ public class Client {
                     e.printStackTrace();
                 }
                 new Thread(commandReader = new CommandReader(socket)).start();
-                System.out.println(CLIENT_ABBREVIATION + "reaches end of code");
+                System.out.println(CLIENT_ABBREVIATION + "reached end of code");
             }
         }).start();
     }

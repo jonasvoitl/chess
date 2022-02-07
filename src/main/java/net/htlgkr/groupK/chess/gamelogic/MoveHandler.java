@@ -28,7 +28,6 @@ public class MoveHandler
         //wenn der User die Figur auf das Feld setzen will wo sie sowieso schon steht ist der Move ungültig
         if(!fromIndex.equals(toIndex)) {
             if(figure.checkRequestedMove(fromIndex, toIndex)) {
-                //TODO Überprüfung ob auf dem Weg eine Figur steht
                 //remove Image from Tile on fromIndex and add image on Tile on toIndex
                 tiles = chessGameController.getTiles();
                 tiles[fromIndex.getX()][fromIndex.getY()].setGraphic(null);

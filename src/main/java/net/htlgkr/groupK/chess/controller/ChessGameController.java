@@ -268,7 +268,7 @@ public class ChessGameController implements Initializable
                         }
                     }
 
-                    //Zuweisung der urspünglichen Farbe des Tiles nachdem der Move abgeschlossen ist
+                    //Zuweisung der urspünglichen Farbe des Tiles nachdem der Move abgeschlossen wurde
                     if(fromIndex.getX()%2==0 && fromIndex.getY()%2==0) {
                         tiles[fromIndex.getX()][fromIndex.getY()].setStyle("-fx-background-color: #FFFFFF");
                     }else if(fromIndex.getX()%2!=0 && fromIndex.getY()%2!=0){

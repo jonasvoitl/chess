@@ -174,8 +174,4 @@ public class Main extends Application {
         stage.setTitle("Verloren!");
         stage.show();
     }
-    //TODO IDs umbenennen (keine _)
-    //TODO darf nicht eigene Figuren schlagen
-    //TODO Figuren schlagen
-    //TODO abwechselnd Züge auswählen
 }
