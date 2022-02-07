@@ -253,7 +253,9 @@ public class ChessGameController implements Initializable
                     Figure figureOnToIndex = tilesMap.get(toIndex);
 
                     boolean moveValid = Main.moveHandler.move(fromIndex, toIndex, selectedFigure);
-                    Main.moveHandler.getCommandWriter().sendFrame(new Frame(selectedFigure, fromIndex, toIndex));
+                    if(moveValid) {
+                        Main.moveHandler.getCommandWriter().sendFrame(new Frame(selectedFigure, fromIndex, toIndex));
+                    }
                     if(moveValid && selectedFigure instanceof Pawn pawn) {
                         pawn.setFirstPawnMove(false);
                     }
